@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "dw.dw.dw"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "demografia2",
+    "packageName": "dw.dw.dw",
+    "packageFolder": "dw/dw/dw",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGVkMDFlZjYwM2UxNDJkZmUwNjRjNGZjNThlNjI4MTQ3YWI2ZTE3YTdmYTczYTY1MDRmNWEwMWQ1Y2EwOGYzMjcyOGJiMDQ2NjY1YzAwZjNlMzAwNWUzZTRiMmRhMDBhY2I3MDI1ZjAyOGU1NDRmNjY1YjM4ZGVhZjcwZTU4NjE=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1597676837076,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
