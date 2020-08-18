@@ -1,0 +1,28 @@
+{
+  "name": "Aces",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "doenteIdentidade",
+      "otherEntityRelationshipName": "aces",
+      "relationshipName": "doenteIdentidade"
+    }
+  ],
+  "changelogDate": "20200817151911",
+  "entityTableName": "aces",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

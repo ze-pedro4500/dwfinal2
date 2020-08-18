@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userProfile">
+            <h2><span>User Profile</span> {{ userProfile.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{ userProfile.nome }}</span>
+                </dd>
+                <dt><span>Demograf</span></dt>
+                <dd>
+                    <span>{{ userProfile.demograf }}</span>
+                </dd>
+                <dt><span>Social</span></dt>
+                <dd>
+                    <span>{{ userProfile.social }}</span>
+                </dd>
+                <dt><span>Proc Clin</span></dt>
+                <dd>
+                    <span>{{ userProfile.procClin }}</span>
+                </dd>
+                <dt><span>Dial Enf</span></dt>
+                <dd>
+                    <span>{{ userProfile.dialEnf }}</span>
+                </dd>
+                <dt><span>Dial Stat</span></dt>
+                <dd>
+                    <span>{{ userProfile.dialStat }}</span>
+                </dd>
+                <dt><span>Quali Stat</span></dt>
+                <dd>
+                    <span>{{ userProfile.qualiStat }}</span>
+                </dd>
+                <dt><span>Lab Link</span></dt>
+                <dd>
+                    <span>{{ userProfile.labLink }}</span>
+                </dd>
+                <dt><span>Gid Link</span></dt>
+                <dd>
+                    <span>{{ userProfile.gidLink }}</span>
+                </dd>
+                <dt><span>Asterix Farma</span></dt>
+                <dd>
+                    <span>{{ userProfile.asterixFarma }}</span>
+                </dd>
+                <dt><span>Asterix Gab Med</span></dt>
+                <dd>
+                    <span>{{ userProfile.asterixGabMed }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-profile', userProfile.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

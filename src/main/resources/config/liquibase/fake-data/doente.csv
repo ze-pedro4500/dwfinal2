@@ -1,0 +1,11 @@
+id;situacao
+1;StatusEmTransito
+2;StatusRecFam
+3;StatusTransfer
+4;StatusEmFerias
+5;StatusRecFam
+6;StatusDP
+7;StatusEmTransito
+8;StatusRecFam
+9;StatusEmFerias
+10;StatusFalecido

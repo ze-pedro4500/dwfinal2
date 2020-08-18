@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span>User Extras</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-extra" [routerLink]="['/user-extra/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new User Extra
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="userExtras?.length === 0">
+        <span>No userExtras found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="userExtras && userExtras.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Activo</span></th>
+                    <th scope="col" ><span>Nome</span></th>
+                    <th scope="col" ><span>Morada</span></th>
+                    <th scope="col" ><span>Cod P</span></th>
+                    <th scope="col" ><span>Telef</span></th>
+                    <th scope="col" ><span>Permiss Change</span></th>
+                    <th scope="col" ><span>Nif</span></th>
+                    <th scope="col" ><span>User</span></th>
+                    <th scope="col" ><span>User Permissions</span></th>
+                    <th scope="col" ><span>User Profile</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userExtra of userExtras ;trackBy: trackId">
+                    <td><a [routerLink]="['/user-extra', userExtra.id, 'view']">{{ userExtra.id }}</a></td>
+                    <td>{{ userExtra.activo }}</td>
+                    <td>{{ userExtra.nome }}</td>
+                    <td>{{ userExtra.morada }}</td>
+                    <td>{{ userExtra.codP }}</td>
+                    <td>{{ userExtra.telef }}</td>
+                    <td>{{ userExtra.permissChange }}</td>
+                    <td>{{ userExtra.nif }}</td>
+                    <td>
+                        {{ userExtra.user?.id }}
+                    </td>
+                    <td>
+                        <div *ngIf="userExtra.userPermissions">
+                            <a [routerLink]="['/user-permissions', userExtra.userPermissions?.id, 'view']" >{{ userExtra.userPermissions?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="userExtra.userProfile">
+                            <a [routerLink]="['/user-profile', userExtra.userProfile?.id, 'view']" >{{ userExtra.userProfile?.nome }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/user-extra', userExtra.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/user-extra', userExtra.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(userExtra)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

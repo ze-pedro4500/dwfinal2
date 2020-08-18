@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="horarioDoente">
+            <h2><span>Horario Doente</span> {{ horarioDoente.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Dia</span></dt>
+                <dd>
+                    <span>{{ horarioDoente.dia }}</span>
+                </dd>
+                <dt><span>Turno</span></dt>
+                <dd>
+                    <span>{{ horarioDoente.turno }}</span>
+                </dd>
+                <dt><span>Sala</span></dt>
+                <dd>
+                    <span>{{ horarioDoente.sala }}</span>
+                </dd>
+                <dt><span>Posto</span></dt>
+                <dd>
+                    <span>{{ horarioDoente.posto }}</span>
+                </dd>
+                <dt><span>Duracao</span></dt>
+                <dd>
+                    <span>{{ horarioDoente.duracao }}</span>
+                </dd>
+                <dt><span>Doente</span></dt>
+                <dd>
+                    <div *ngIf="horarioDoente.doente">
+                        <a [routerLink]="['/doente', horarioDoente.doente?.id, 'view']">{{ horarioDoente.doente?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/horario-doente', horarioDoente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

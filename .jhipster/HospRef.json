@@ -1,0 +1,28 @@
+{
+  "name": "HospRef",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "doenteIdentidade",
+      "otherEntityRelationshipName": "hospRef",
+      "relationshipName": "doenteIdentidade"
+    }
+  ],
+  "changelogDate": "20200817153611",
+  "entityTableName": "hosp_ref",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

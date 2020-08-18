@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="doenteContactosOutros">
+            <h2><span>Doente Contactos Outros</span> {{ doenteContactosOutros.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.nome }}</span>
+                </dd>
+                <dt><span>Parentesco</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.parentesco }}</span>
+                </dd>
+                <dt><span>Coabita</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.coabita }}</span>
+                </dd>
+                <dt><span>Telef</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.telef }}</span>
+                </dd>
+                <dt><span>Ocupacao</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.ocupacao }}</span>
+                </dd>
+                <dt><span>Obs</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.obs }}</span>
+                </dd>
+                <dt><span>Preferencial</span></dt>
+                <dd>
+                    <span>{{ doenteContactosOutros.preferencial }}</span>
+                </dd>
+                <dt><span>Doente</span></dt>
+                <dd>
+                    <div *ngIf="doenteContactosOutros.doente">
+                        <a [routerLink]="['/doente', doenteContactosOutros.doente?.id, 'view']">{{ doenteContactosOutros.doente?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/doente-contactos-outros', doenteContactosOutros.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

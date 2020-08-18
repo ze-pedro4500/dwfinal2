@@ -1,0 +1,28 @@
+{
+  "name": "CentroSaude",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "doenteIdentidade",
+      "otherEntityRelationshipName": "centroSaude",
+      "relationshipName": "doenteIdentidade"
+    }
+  ],
+  "changelogDate": "20200817153511",
+  "entityTableName": "centro_saude",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

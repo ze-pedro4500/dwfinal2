@@ -1,0 +1,25 @@
+{
+  "name": "SubSisGrupo",
+  "fields": [
+    {
+      "fieldName": "gidDesigna",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gidGrupo",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200817153311",
+  "entityTableName": "sub_sis_grupo",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

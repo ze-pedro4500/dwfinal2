@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-doente-hist-movimentos-heading">Create or edit a Doente Hist Movimentos</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data">Data</label>
+                    <div class="input-group">
+                        <input id="field_data" type="text" class="form-control" name="data" ngbDatepicker #dataDp="ngbDatepicker" formControlName="data"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_situacao">Situacao</label>
+                    <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                        <option value="StatusPRHD">StatusPRHD</option>
+                        <option value="StatusFalecido">StatusFalecido</option>
+                        <option value="StatusTranspl">StatusTranspl</option>
+                        <option value="StatusRecFam">StatusRecFam</option>
+                        <option value="StatusTransfer">StatusTransfer</option>
+                        <option value="StatusDP">StatusDP</option>
+                        <option value="StatusInternado">StatusInternado</option>
+                        <option value="StatusEmTransito">StatusEmTransito</option>
+                        <option value="StatusEmFerias">StatusEmFerias</option>
+                        <option value="StatusAlta">StatusAlta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_statusprevio">Statusprevio</label>
+                    <select class="form-control" name="statusprevio" formControlName="statusprevio" id="field_statusprevio">
+                        <option value="StatusPRHD">StatusPRHD</option>
+                        <option value="StatusFalecido">StatusFalecido</option>
+                        <option value="StatusTranspl">StatusTranspl</option>
+                        <option value="StatusRecFam">StatusRecFam</option>
+                        <option value="StatusTransfer">StatusTransfer</option>
+                        <option value="StatusDP">StatusDP</option>
+                        <option value="StatusInternado">StatusInternado</option>
+                        <option value="StatusEmTransito">StatusEmTransito</option>
+                        <option value="StatusEmFerias">StatusEmFerias</option>
+                        <option value="StatusAlta">StatusAlta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_causaMorte">Causa Morte</label>
+                    <input type="text" class="form-control" name="causaMorte" id="field_causaMorte"
+                           formControlName="causaMorte"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_obs">Obs</label>
+                    <input type="text" class="form-control" name="obs" id="field_obs"
+                           formControlName="obs"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_doente">Doente</label>
+                    <select class="form-control" id="field_doente" name="doente" formControlName="doente">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="doenteOption.id === editForm.get('doente')!.value?.id ? editForm.get('doente')!.value : doenteOption" *ngFor="let doenteOption of doentes; trackBy: trackById">{{ doenteOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "Turnos",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "doente",
+      "otherEntityRelationshipName": "turnos",
+      "relationshipName": "doente"
+    }
+  ],
+  "changelogDate": "20200817153411",
+  "entityTableName": "turnos",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "DoenteContactos",
+  "fields": [
+    {
+      "fieldName": "transportador",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefTransp",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "doente",
+      "otherEntityRelationshipName": "doenteContactos",
+      "relationshipName": "doente",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20200817152311",
+  "entityTableName": "doente_contactos",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

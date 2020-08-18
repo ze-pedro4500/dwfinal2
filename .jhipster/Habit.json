@@ -1,0 +1,28 @@
+{
+  "name": "Habit",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "doenteSocioFamiliar",
+      "otherEntityRelationshipName": "habit",
+      "relationshipName": "doenteSocioFamiliar"
+    }
+  ],
+  "changelogDate": "20200817153711",
+  "entityTableName": "habit",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -14,6 +14,41 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817151811_added_entity_Vitalidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817151911_added_entity_Aces.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152011_added_entity_Doente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152111_added_entity_DoenteIdentidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152211_added_entity_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152311_added_entity_DoenteContactos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152411_added_entity_DoenteContactosOutros.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152511_added_entity_SitProf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152611_added_entity_Profissao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152711_added_entity_DoenteSocioFamiliar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152811_added_entity_DoenteDiagnosticoSocial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152911_added_entity_DoenteRegistosIntervencoes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153011_added_entity_DoenteHistMovimentos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153111_added_entity_HorarioDoente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153211_added_entity_SubSistemas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153311_added_entity_SubSisGrupo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153411_added_entity_Turnos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153511_added_entity_CentroSaude.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153611_added_entity_HospRef.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153711_added_entity_Habit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153811_added_entity_GrauConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153911_added_entity_UserExtra.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817154011_added_entity_UserProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817154111_added_entity_UserPermissions.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20200817152011_added_entity_constraints_Doente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152111_added_entity_constraints_DoenteIdentidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152311_added_entity_constraints_DoenteContactos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152411_added_entity_constraints_DoenteContactosOutros.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152711_added_entity_constraints_DoenteSocioFamiliar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152811_added_entity_constraints_DoenteDiagnosticoSocial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817152911_added_entity_constraints_DoenteRegistosIntervencoes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153011_added_entity_constraints_DoenteHistMovimentos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153111_added_entity_constraints_HorarioDoente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153211_added_entity_constraints_SubSistemas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200817153911_added_entity_constraints_UserExtra.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

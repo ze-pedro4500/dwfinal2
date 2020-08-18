@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="doenteHistMovimentos">
+            <h2><span>Doente Hist Movimentos</span> {{ doenteHistMovimentos.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Data</span></dt>
+                <dd>
+                    <span>{{ doenteHistMovimentos.data }}</span>
+                </dd>
+                <dt><span>Situacao</span></dt>
+                <dd>
+                    <span>{{ doenteHistMovimentos.situacao }}</span>
+                </dd>
+                <dt><span>Statusprevio</span></dt>
+                <dd>
+                    <span>{{ doenteHistMovimentos.statusprevio }}</span>
+                </dd>
+                <dt><span>Causa Morte</span></dt>
+                <dd>
+                    <span>{{ doenteHistMovimentos.causaMorte }}</span>
+                </dd>
+                <dt><span>Obs</span></dt>
+                <dd>
+                    <span>{{ doenteHistMovimentos.obs }}</span>
+                </dd>
+                <dt><span>Doente</span></dt>
+                <dd>
+                    <div *ngIf="doenteHistMovimentos.doente">
+                        <a [routerLink]="['/doente', doenteHistMovimentos.doente?.id, 'view']">{{ doenteHistMovimentos.doente?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/doente-hist-movimentos', doenteHistMovimentos.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

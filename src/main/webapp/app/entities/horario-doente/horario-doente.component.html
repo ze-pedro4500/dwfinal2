@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Horario Doentes</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-horario-doente" [routerLink]="['/horario-doente/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Horario Doente
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="horarioDoentes?.length === 0">
+        <span>No horarioDoentes found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="horarioDoentes && horarioDoentes.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Dia</span></th>
+                    <th scope="col" ><span>Turno</span></th>
+                    <th scope="col" ><span>Sala</span></th>
+                    <th scope="col" ><span>Posto</span></th>
+                    <th scope="col" ><span>Duracao</span></th>
+                    <th scope="col" ><span>Doente</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let horarioDoente of horarioDoentes ;trackBy: trackId">
+                    <td><a [routerLink]="['/horario-doente', horarioDoente.id, 'view']">{{ horarioDoente.id }}</a></td>
+                    <td>{{ horarioDoente.dia }}</td>
+                    <td>{{ horarioDoente.turno }}</td>
+                    <td>{{ horarioDoente.sala }}</td>
+                    <td>{{ horarioDoente.posto }}</td>
+                    <td>{{ horarioDoente.duracao }}</td>
+                    <td>
+                        <div *ngIf="horarioDoente.doente">
+                            <a [routerLink]="['/doente', horarioDoente.doente?.id, 'view']" >{{ horarioDoente.doente?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/horario-doente', horarioDoente.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/horario-doente', horarioDoente.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(horarioDoente)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

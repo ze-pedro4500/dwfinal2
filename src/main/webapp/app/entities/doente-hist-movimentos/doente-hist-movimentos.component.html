@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Doente Hist Movimentos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doente-hist-movimentos" [routerLink]="['/doente-hist-movimentos/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Doente Hist Movimentos
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="doenteHistMovimentos?.length === 0">
+        <span>No doenteHistMovimentos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="doenteHistMovimentos && doenteHistMovimentos.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Data</span></th>
+                    <th scope="col" ><span>Situacao</span></th>
+                    <th scope="col" ><span>Statusprevio</span></th>
+                    <th scope="col" ><span>Causa Morte</span></th>
+                    <th scope="col" ><span>Obs</span></th>
+                    <th scope="col" ><span>Doente</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let doenteHistMovimentos of doenteHistMovimentos ;trackBy: trackId">
+                    <td><a [routerLink]="['/doente-hist-movimentos', doenteHistMovimentos.id, 'view']">{{ doenteHistMovimentos.id }}</a></td>
+                    <td>{{ doenteHistMovimentos.data | date:'mediumDate' }}</td>
+                    <td>{{ doenteHistMovimentos.situacao }}</td>
+                    <td>{{ doenteHistMovimentos.statusprevio }}</td>
+                    <td>{{ doenteHistMovimentos.causaMorte }}</td>
+                    <td>{{ doenteHistMovimentos.obs }}</td>
+                    <td>
+                        <div *ngIf="doenteHistMovimentos.doente">
+                            <a [routerLink]="['/doente', doenteHistMovimentos.doente?.id, 'view']" >{{ doenteHistMovimentos.doente?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/doente-hist-movimentos', doenteHistMovimentos.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/doente-hist-movimentos', doenteHistMovimentos.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(doenteHistMovimentos)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

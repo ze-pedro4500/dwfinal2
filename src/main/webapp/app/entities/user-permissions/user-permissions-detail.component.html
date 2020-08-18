@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userPermissions">
+            <h2><span>User Permissions</span> {{ userPermissions.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Demograf</span></dt>
+                <dd>
+                    <span>{{ userPermissions.demograf }}</span>
+                </dd>
+                <dt><span>Social</span></dt>
+                <dd>
+                    <span>{{ userPermissions.social }}</span>
+                </dd>
+                <dt><span>Proc Clin</span></dt>
+                <dd>
+                    <span>{{ userPermissions.procClin }}</span>
+                </dd>
+                <dt><span>Dial Enf</span></dt>
+                <dd>
+                    <span>{{ userPermissions.dialEnf }}</span>
+                </dd>
+                <dt><span>Dial Stat</span></dt>
+                <dd>
+                    <span>{{ userPermissions.dialStat }}</span>
+                </dd>
+                <dt><span>Quali Stat</span></dt>
+                <dd>
+                    <span>{{ userPermissions.qualiStat }}</span>
+                </dd>
+                <dt><span>Lab Link</span></dt>
+                <dd>
+                    <span>{{ userPermissions.labLink }}</span>
+                </dd>
+                <dt><span>Gid Link</span></dt>
+                <dd>
+                    <span>{{ userPermissions.gidLink }}</span>
+                </dd>
+                <dt><span>Asterix Farma</span></dt>
+                <dd>
+                    <span>{{ userPermissions.asterixFarma }}</span>
+                </dd>
+                <dt><span>Asterix Gab Med</span></dt>
+                <dd>
+                    <span>{{ userPermissions.asterixGabMed }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-permissions', userPermissions.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

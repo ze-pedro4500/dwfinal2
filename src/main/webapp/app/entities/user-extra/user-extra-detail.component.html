@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userExtra">
+            <h2><span>User Extra</span> {{ userExtra.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Activo</span></dt>
+                <dd>
+                    <span>{{ userExtra.activo }}</span>
+                </dd>
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{ userExtra.nome }}</span>
+                </dd>
+                <dt><span>Morada</span></dt>
+                <dd>
+                    <span>{{ userExtra.morada }}</span>
+                </dd>
+                <dt><span>Cod P</span></dt>
+                <dd>
+                    <span>{{ userExtra.codP }}</span>
+                </dd>
+                <dt><span>Telef</span></dt>
+                <dd>
+                    <span>{{ userExtra.telef }}</span>
+                </dd>
+                <dt><span>Permiss Change</span></dt>
+                <dd>
+                    <span>{{ userExtra.permissChange }}</span>
+                </dd>
+                <dt><span>Nif</span></dt>
+                <dd>
+                    <span>{{ userExtra.nif }}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{ userExtra.user?.id }}
+                </dd>
+                <dt><span>User Permissions</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.userPermissions">
+                        <a [routerLink]="['/user-permissions', userExtra.userPermissions?.id, 'view']">{{ userExtra.userPermissions?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>User Profile</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.userProfile">
+                        <a [routerLink]="['/user-profile', userExtra.userProfile?.id, 'view']">{{ userExtra.userProfile?.nome }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-extra', userExtra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

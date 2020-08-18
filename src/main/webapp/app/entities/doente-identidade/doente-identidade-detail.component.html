@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="doenteIdentidade">
+            <h2><span>Doente Identidade</span> {{ doenteIdentidade.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.nome }}</span>
+                </dd>
+                <dt><span>Data Nasc</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.dataNasc }}</span>
+                </dd>
+                <dt><span>Altura</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.altura }}</span>
+                </dd>
+                <dt><span>Morada</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.morada }}</span>
+                </dd>
+                <dt><span>Cod Post</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.codPost }}</span>
+                </dd>
+                <dt><span>Freguesia</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.freguesia }}</span>
+                </dd>
+                <dt><span>Nif</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.nif }}</span>
+                </dd>
+                <dt><span>Med Fam</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.medFam }}</span>
+                </dd>
+                <dt><span>Sexo</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.sexo }}</span>
+                </dd>
+                <dt><span>Telef</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.telef }}</span>
+                </dd>
+                <dt><span>Telef 2</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.telef2 }}</span>
+                </dd>
+                <dt><span>Doc Id</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.docId }}</span>
+                </dd>
+                <dt><span>N Benef</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.nBenef }}</span>
+                </dd>
+                <dt><span>N Utente</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.nUtente }}</span>
+                </dd>
+                <dt><span>Num Proc Hosp</span></dt>
+                <dd>
+                    <span>{{ doenteIdentidade.numProcHosp }}</span>
+                </dd>
+                <dt><span>Doente</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.doente">
+                        <a [routerLink]="['/doente', doenteIdentidade.doente?.id, 'view']">{{ doenteIdentidade.doente?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Subsistemas</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.subsistemas">
+                        <a [routerLink]="['/sub-sistemas', doenteIdentidade.subsistemas?.id, 'view']">{{ doenteIdentidade.subsistemas?.gidNome }}</a>
+                    </div>
+                </dd>
+                <dt><span>Aces</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.aces">
+                        <a [routerLink]="['/aces', doenteIdentidade.aces?.id, 'view']">{{ doenteIdentidade.aces?.nome }}</a>
+                    </div>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.country">
+                        <a [routerLink]="['/country', doenteIdentidade.country?.id, 'view']">{{ doenteIdentidade.country?.nome }}</a>
+                    </div>
+                </dd>
+                <dt><span>Centro Saude</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.centroSaude">
+                        <a [routerLink]="['/centro-saude', doenteIdentidade.centroSaude?.id, 'view']">{{ doenteIdentidade.centroSaude?.nome }}</a>
+                    </div>
+                </dd>
+                <dt><span>Hosp Ref</span></dt>
+                <dd>
+                    <div *ngIf="doenteIdentidade.hospRef">
+                        <a [routerLink]="['/hosp-ref', doenteIdentidade.hospRef?.id, 'view']">{{ doenteIdentidade.hospRef?.nome }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/doente-identidade', doenteIdentidade.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

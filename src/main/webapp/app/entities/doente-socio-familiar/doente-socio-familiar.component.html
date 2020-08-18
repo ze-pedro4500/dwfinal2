@@ -1,0 +1,111 @@
+<div>
+    <h2 id="page-heading">
+        <span>Doente Socio Familiars</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doente-socio-familiar" [routerLink]="['/doente-socio-familiar/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Doente Socio Familiar
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="doenteSocioFamiliars?.length === 0">
+        <span>No doenteSocioFamiliars found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="doenteSocioFamiliars && doenteSocioFamiliars.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Habilitacoes</span></th>
+                    <th scope="col" ><span>Est Civil</span></th>
+                    <th scope="col" ><span>Conjuge Nome</span></th>
+                    <th scope="col" ><span>Conjuge Prof</span></th>
+                    <th scope="col" ><span>Activ Temp Liv</span></th>
+                    <th scope="col" ><span>Habitacao Obs</span></th>
+                    <th scope="col" ><span>Grau Conforto Obs</span></th>
+                    <th scope="col" ><span>Resposta Social</span></th>
+                    <th scope="col" ><span>Doente</span></th>
+                    <th scope="col" ><span>Vitalidade</span></th>
+                    <th scope="col" ><span>Habit</span></th>
+                    <th scope="col" ><span>Grau Conf</span></th>
+                    <th scope="col" ><span>Profissao</span></th>
+                    <th scope="col" ><span>Sit Prof</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let doenteSocioFamiliar of doenteSocioFamiliars ;trackBy: trackId">
+                    <td><a [routerLink]="['/doente-socio-familiar', doenteSocioFamiliar.id, 'view']">{{ doenteSocioFamiliar.id }}</a></td>
+                    <td>{{ doenteSocioFamiliar.habilitacoes }}</td>
+                    <td>{{ doenteSocioFamiliar.estCivil }}</td>
+                    <td>{{ doenteSocioFamiliar.conjugeNome }}</td>
+                    <td>{{ doenteSocioFamiliar.conjugeProf }}</td>
+                    <td>{{ doenteSocioFamiliar.activTempLiv }}</td>
+                    <td>{{ doenteSocioFamiliar.habitacaoObs }}</td>
+                    <td>{{ doenteSocioFamiliar.grauConfortoObs }}</td>
+                    <td>{{ doenteSocioFamiliar.respostaSocial }}</td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.doente">
+                            <a [routerLink]="['/doente', doenteSocioFamiliar.doente?.id, 'view']" >{{ doenteSocioFamiliar.doente?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.vitalidade">
+                            <a [routerLink]="['/vitalidade', doenteSocioFamiliar.vitalidade?.id, 'view']" >{{ doenteSocioFamiliar.vitalidade?.percentagem }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.habit">
+                            <a [routerLink]="['/habit', doenteSocioFamiliar.habit?.id, 'view']" >{{ doenteSocioFamiliar.habit?.nome }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.grauConf">
+                            <a [routerLink]="['/grau-conf', doenteSocioFamiliar.grauConf?.id, 'view']" >{{ doenteSocioFamiliar.grauConf?.nome }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.profissao">
+                            <a [routerLink]="['/profissao', doenteSocioFamiliar.profissao?.id, 'view']" >{{ doenteSocioFamiliar.profissao?.nome }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="doenteSocioFamiliar.sitProf">
+                            <a [routerLink]="['/sit-prof', doenteSocioFamiliar.sitProf?.id, 'view']" >{{ doenteSocioFamiliar.sitProf?.nome }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/doente-socio-familiar', doenteSocioFamiliar.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/doente-socio-familiar', doenteSocioFamiliar.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(doenteSocioFamiliar)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
