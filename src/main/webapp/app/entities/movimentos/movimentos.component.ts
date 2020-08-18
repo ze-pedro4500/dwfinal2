@@ -93,7 +93,7 @@ export class MovimentosComponent implements OnInit, OnDestroy {
       ...new DoenteHistMovimentos(),
       data: this.editForm.get(['data']).value,
       situacao: this.editForm.get(['situacao']).value,
-      statusprevio: this.editForm.get(['statusprevio']).value,
+      statusprevio: this.statusPrevio,
       obs: this.editForm.get(['obs']).value,
       causaMorte: this.editForm.get(['causaMorte']).value,
       doente: this.doente
@@ -109,6 +109,7 @@ export class MovimentosComponent implements OnInit, OnDestroy {
 
   protected onSaveSuccess() {
     this.isSaving = false;
+    this.editForm.reset();
   }
 
   protected onSaveError() {
@@ -140,11 +141,15 @@ export class MovimentosComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
+    this.doenteService.find(this.doenteId).subscribe(dt => [(this.doente = dt.body)]);
     this.doenteHistMovimentosService.search(this.doenteId).subscribe((res: HttpResponse<IDoenteHistMovimentos[]>) => {
       this.doenteHistMovimentos = res.body.sort((a: IDoenteHistMovimentos, b: IDoenteHistMovimentos) => (a.data > b.data ? 1 : -1));
       this.statusPrevio = this.doenteHistMovimentos[0].situacao;
+      this.doenteHistMovimentos.reverse();
       if (this.statusPrevio === 'StatusFalecido') {
         this.vivo = false;
+      } else {
+        this.vivo = true;
       }
     });
   }

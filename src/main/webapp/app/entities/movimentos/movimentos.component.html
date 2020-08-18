@@ -53,6 +53,7 @@
             <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
                 <h2 id="jhi-doente-hist-movimentos-heading" style="margin-left: 27rem;">Adicionar Movimento</h2>
                 <div>
+                    <!--First movement-->
                     <div class="form-group">
                         <label class="lab form-control-label" jhiTranslate="dialwinApp.doenteHistMovimentos.data" for="field_data">Data</label>
                         <div class="input-group">
@@ -76,23 +77,7 @@
                             <option value="StatusEmFerias">StatusEmFerias</option>
                             <option value="StatusAlta">StatusAlta</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label" for="field_statusprevio">Statusprevio</label>
-                        <select class="form-control" name="statusprevio" formControlName="statusprevio" id="field_statusprevio">
-                            <option value="StatusPRHD">StatusPRHD</option>
-                            <option value="StatusFalecido">StatusFalecido</option>
-                            <option value="StatusTranspl">StatusTranspl</option>
-                            <option value="StatusRecFam">StatusRecFam</option>
-                            <option value="StatusTransfer">StatusTransfer</option>
-                            <option value="StatusDP">StatusDP</option>
-                            <option value="StatusInternado">StatusInternado</option>
-                            <option value="StatusEmTransito">StatusEmTransito</option>
-                            <option value="StatusEmFerias">StatusEmFerias</option>
-                            <option value="StatusAlta">StatusAlta</option>
-                        </select>
-                    </div>
-    
+                    </div> 
                     <div class="form-group">
                         <label class="form-control-label" for="field_causaMorte">Causa Morte</label>
                         <input type="text" class="form-control" name="causaMorte" id="field_causaMorte"
