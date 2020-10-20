@@ -63,19 +63,70 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="statusIndeterminado">
                         <label class="form-control-label" for="field_situacao">Situacao</label>
                         <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
                             <option value="StatusPRHD">StatusPRHD</option>
+                            <option value="StatusEmTransito">StatusEmTransito</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusPRHD">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
                             <option value="StatusFalecido">StatusFalecido</option>
                             <option value="StatusTranspl">StatusTranspl</option>
                             <option value="StatusRecFam">StatusRecFam</option>
                             <option value="StatusTransfer">StatusTransfer</option>
                             <option value="StatusDP">StatusDP</option>
                             <option value="StatusInternado">StatusInternado</option>
-                            <option value="StatusEmTransito">StatusEmTransito</option>
                             <option value="StatusEmFerias">StatusEmFerias</option>
                             <option value="StatusAlta">StatusAlta</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusTransplantado">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusPRHD">StatusPRHD</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusRecupFunc">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusPRHD">StatusPRHD</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusTransferido">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusPRHD">StatusPRHD</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusDP">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusPRHD">StatusPRHD</option>
+                        </select>
+                    </div> 
+                     
+                    <div class="form-group" *ngIf="statusEmTransito">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusFalecido">StatusFalecido</option>
+                            <option value="StatusInternado">StatusInternado</option>
+                            <option value="StatusAlta">StatusAlta</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusFerias">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusPRHD">StatusPRHD</option>
+                            <option value="StatusFalecido">StatusFalecido</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" *ngIf="statusAlta">
+                        <label class="form-control-label" for="field_situacao">Situacao</label>
+                        <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
+                            <option value="StatusEmTransito">StatusEmTransito</option>
                         </select>
                     </div> 
                     <div class="form-group">

@@ -81,8 +81,25 @@ export class HorarioComponent implements OnInit, OnDestroy {
   save() {
     this.isSaving = true;
     const horarioDoente = this.createFromForm();
+    if (
+      horarioDoente.dia === undefined ||
+      horarioDoente.dia === null ||
+      horarioDoente.turno === undefined ||
+      horarioDoente.turno === null ||
+      horarioDoente.sala === undefined ||
+      horarioDoente.sala === null ||
+      horarioDoente.posto === undefined ||
+      horarioDoente.posto === null ||
+      horarioDoente.duracao === undefined ||
+      horarioDoente.duracao === null
+    ) {
+      this.cancel();
+      this.isSaving = false;
+      return;
+    }
     this.subscribeToSaveResponse(this.horarioDoenteService.create(horarioDoente));
     this.newHorario = false;
+    this.editForm.reset();
     this.loadAll();
     this.loadAll();
     this.loadAll();

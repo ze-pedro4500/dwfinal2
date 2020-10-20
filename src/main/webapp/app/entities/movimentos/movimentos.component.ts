@@ -31,6 +31,17 @@ export class MovimentosComponent implements OnInit, OnDestroy {
   dataDp: any;
   doentes: IDoente[];
   statusPrevio: any;
+  statusPrevioPrevio: any;
+  statusIndeterminado = false;
+  statusPRHD = false;
+  statusTransplantado = false;
+  statusRecupFunc = false;
+  statusTransferido = false;
+  statusDP = false;
+  statusInternado = false;
+  statusEmTransito = false;
+  statusFerias = false;
+  statusAlta = false;
 
   editForm = this.fb.group({
     id: [],
@@ -59,9 +70,16 @@ export class MovimentosComponent implements OnInit, OnDestroy {
   save() {
     this.isSaving = true;
     const doenteHistMovimentos = this.createFromForm();
+    if (doenteHistMovimentos.data === null || doenteHistMovimentos.data === undefined) {
+      this.cancel();
+      this.isSaving = false;
+      return;
+    }
+    if (this.statusPrevio === 'StatusInternado') {
+      doenteHistMovimentos.situacao = this.statusPrevioPrevio;
+    }
     this.subscribeToSaveResponse(this.doenteHistMovimentosService.create(doenteHistMovimentos));
     this.newMovimento = false;
-    this.loadAll();
     this.loadAll();
     this.delay(2000);
     this.loadAll();
@@ -144,14 +162,156 @@ export class MovimentosComponent implements OnInit, OnDestroy {
     this.doenteService.find(this.doenteId).subscribe(dt => [(this.doente = dt.body)]);
     this.doenteHistMovimentosService.search(this.doenteId).subscribe((res: HttpResponse<IDoenteHistMovimentos[]>) => {
       this.doenteHistMovimentos = res.body.sort((a: IDoenteHistMovimentos, b: IDoenteHistMovimentos) => (a.data > b.data ? 1 : -1));
-      this.statusPrevio = this.doenteHistMovimentos[0].situacao;
-      this.doenteHistMovimentos.reverse();
+      this.doenteHistMovimentos.forEach(element => {
+        if (element.situacao === null || element.situacao === undefined) {
+          this.delete(element);
+        }
+      });
+      console.log(this.doenteHistMovimentos);
+      if (this.doenteHistMovimentos.length === 0) {
+        this.statusIndeterminado = true;
+      }
+      if (this.doenteHistMovimentos.length > 0) {
+        this.statusPrevio = this.doenteHistMovimentos[this.doenteHistMovimentos.length - 1].situacao;
+        if (this.doenteHistMovimentos.length > 1) {
+          this.statusPrevioPrevio = this.doenteHistMovimentos[this.doenteHistMovimentos.length - 2].situacao;
+        }
+      }
+      console.log(this.statusPrevio);
+      console.log(this.statusPrevioPrevio);
       if (this.statusPrevio === 'StatusFalecido') {
         this.vivo = false;
       } else {
         this.vivo = true;
       }
+
+      this.changeStatus(this.statusPrevio);
     });
+  }
+
+  changeStatus(statusPrevio: any) {
+    switch (statusPrevio) {
+      case null:
+        this.statusIndeterminado = true;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusPRHD':
+        this.statusIndeterminado = false;
+        this.statusPRHD = true;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusTranspl':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = true;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusRecFam':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = true;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusTransfer':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = true;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusDP':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = true;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusInternado':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = true;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusemTransito':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = true;
+        this.statusFerias = false;
+        this.statusAlta = false;
+        break;
+      case 'StatusEmFerias':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = true;
+        this.statusAlta = false;
+        break;
+      case 'StatusAlta':
+        this.statusIndeterminado = false;
+        this.statusPRHD = false;
+        this.statusTransplantado = false;
+        this.statusRecupFunc = false;
+        this.statusTransferido = false;
+        this.statusDP = false;
+        this.statusInternado = false;
+        this.statusEmTransito = false;
+        this.statusFerias = false;
+        this.statusAlta = true;
+        break;
+    }
   }
 
   ngOnDestroy() {
