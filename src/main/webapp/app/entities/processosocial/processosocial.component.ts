@@ -171,12 +171,15 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
     this.isSaving = true;
     const doenteDiagnosticoSocial = this.createFromForm();
     this.subscribeToSaveResponse(this.doenteDiagnosticoSocialService.create(doenteDiagnosticoSocial));
+    this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
+      this.hist = res.body.reverse();
+    });
   }
 
   private createFromForm(): IDoenteDiagnosticoSocial {
     return {
       ...new DoenteDiagnosticoSocial(),
-      id: this.editForm.get(['id']).value,
+
       data: this.editForm.get(['data']).value,
       descr: this.editForm.get(['descr']).value,
       doente: this.editForm.get(['doente']).value

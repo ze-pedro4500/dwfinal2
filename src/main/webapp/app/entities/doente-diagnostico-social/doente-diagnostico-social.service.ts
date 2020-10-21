@@ -21,10 +21,11 @@ export class DoenteDiagnosticoSocialService {
   constructor(protected http: HttpClient) {}
 
   create(doenteDiagnosticoSocial: IDoenteDiagnosticoSocial): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(doenteDiagnosticoSocial);
+    return this.http.post<IDoenteDiagnosticoSocial>(this.resourceUrl, doenteDiagnosticoSocial, { observe: 'response' });
+    /* const copy = this.convertDateFromClient(doenteDiagnosticoSocial);
     return this.http
       .post<IDoenteDiagnosticoSocial>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));*/
   }
 
   update(doenteDiagnosticoSocial: IDoenteDiagnosticoSocial): Observable<EntityResponseType> {

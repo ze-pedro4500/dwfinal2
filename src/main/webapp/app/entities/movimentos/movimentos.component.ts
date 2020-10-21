@@ -167,7 +167,6 @@ export class MovimentosComponent implements OnInit, OnDestroy {
           this.delete(element);
         }
       });
-      console.log(this.doenteHistMovimentos);
       if (this.doenteHistMovimentos.length === 0) {
         this.statusIndeterminado = true;
       }
@@ -177,8 +176,7 @@ export class MovimentosComponent implements OnInit, OnDestroy {
           this.statusPrevioPrevio = this.doenteHistMovimentos[this.doenteHistMovimentos.length - 2].situacao;
         }
       }
-      console.log(this.statusPrevio);
-      console.log(this.statusPrevioPrevio);
+
       if (this.statusPrevio === 'StatusFalecido') {
         this.vivo = false;
       } else {
