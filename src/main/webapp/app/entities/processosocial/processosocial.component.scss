@@ -14,9 +14,12 @@ label {
   font-size: 1vw;
 }
 #data {
-  width: 18%;
+  width: 19%;
 }
 #topo {
   display: inline-flex;
   width: 100%;
+}
+.ng-valid[required] {
+  border-left: 5px solid #007bff;
 }

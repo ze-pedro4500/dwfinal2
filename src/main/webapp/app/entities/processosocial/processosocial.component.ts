@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IDoente } from 'app/shared/model/doente.model';
+import { IDoente } from '../../shared/model/doente.model';
 import { FormBuilder } from '@angular/forms';
-import { DoenteService } from 'app/entities/doente/doente.service';
+import { DoenteService } from '../../entities/doente/doente.service';
 import { IDoenteDiagnosticoSocial, DoenteDiagnosticoSocial } from 'app/shared/model/doente-diagnostico-social.model';
 import { JhiAlertService } from 'ng-jhipster';
 import { DoenteDiagnosticoSocialService } from '../doente-diagnostico-social/doente-diagnostico-social.service';
@@ -13,7 +13,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DoenteRegistosIntervencoesService } from '../doente-registos-intervencoes/doente-registos-intervencoes.service';
 import { DoenteRegistosIntervencoesDeleteDialogComponent } from '../doente-registos-intervencoes/doente-registos-intervencoes-delete-dialog.component';
-import { IDoenteRegistosIntervencoes, DoenteRegistosIntervencoes } from 'app/shared/model/doente-registos-intervencoes.model';
+import { IDoenteRegistosIntervencoes, DoenteRegistosIntervencoes } from '../../shared/model/doente-registos-intervencoes.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'jhi-processosocial',
@@ -32,8 +33,7 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
   newRegisto = false;
   isSaving2: boolean;
   doente: IDoente;
-  hist: IDoenteDiagnosticoSocial[];
-  verHistorico = false;
+
   editForm = this.fb.group({
     id: [],
     data: [],
@@ -96,7 +96,6 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.verHistorico = false;
     this.isSaving2 = false;
     this.isSaving = false;
     this.data.currentPerfilSocial.subscribe(ps => {
@@ -109,25 +108,28 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
       });
       this.loadAll();
       this.registerChangeInDoenteRegistosIntervencoes();
-      this.doenteDiagnosticoSocialService.search(this.doenteId).subscribe(res => {
-        this.updateForm(res.body);
-      });
       this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
-        this.hist = res.body.reverse();
+        const d = new Date();
+        const currDate = d.getDate();
+        const currMonth = d.getMonth();
+        const currYear = d.getFullYear();
+        const months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        const today = months[currMonth] + ' ' + currDate + ' ' + currYear;
+        for (let i = 0; i <= res.body.length; i++) {
+          if (res.body[i] === today) {
+            console.log('YES');
+          }
+          console.log(today);
+        }
+        /*  console.log(res.body);
+        this.updateForm(res.body);*/
       });
     });
     this.doenteService.query().subscribe(
       (res: HttpResponse<IDoente[]>) => (this.doentes = res.body),
       (res: HttpErrorResponse) => this.onError(res.message)
     );
-  }
-
-  historico() {
-    if (this.verHistorico === false) {
-      this.verHistorico = true;
-    } else {
-      this.verHistorico = false;
-    }
   }
 
   ngOnDestroy() {
@@ -173,7 +175,6 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
 
     this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
       this.subscribeToSaveResponse(this.doenteDiagnosticoSocialService.create(doenteDiagnosticoSocial));
-      this.hist = res.body.reverse();
     });
   }
 
@@ -181,7 +182,7 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
     return {
       ...new DoenteDiagnosticoSocial(),
 
-      data: this.editForm.get(['data']).value,
+      data: moment(),
       descr: this.editForm.get(['descr']).value,
       doente: this.editForm.get(['doente']).value
     };

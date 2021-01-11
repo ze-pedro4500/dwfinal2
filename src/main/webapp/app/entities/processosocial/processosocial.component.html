@@ -9,7 +9,10 @@
                     
                     <div id="topo">
                         <label style="margin-bottom: 1vw;width: 100%;" class="lab form-control-label" for="field_descr">Diagnóstico Social</label>
-                        <textarea id="data" rows=1 formControlName="data" class="item form-control"></textarea></div>
+                        <select>
+                            <option>Hoje</option>
+                        </select>
+                    </div>
                     
                     <textarea rows=10 formControlName="descr" class="item form-control"></textarea>
                 </div>
@@ -17,27 +20,10 @@
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="but btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
                 </button>
-                <button (click)="historico()" class="but btn btn-primary">
-                    <span >Histórico</span>
-                </button>
+                
             </div>
         </form>
-        <div class="table-responsive"  *ngIf="verHistorico">
-            <table class="table table-striped" aria-describedby="page-heading">
-                <thead>
-                    <tr>
-                        <th scope="col" ><span>Descrição</span></th>
-                        <th scope="col" ><span>Data</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let historicos of hist ;trackBy: trackId">
-                        <td>{{ historicos.descr }}</td>
-                        <td>{{ historicos.data }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
     <div class="col-6">
         <h2 id="page-heading">

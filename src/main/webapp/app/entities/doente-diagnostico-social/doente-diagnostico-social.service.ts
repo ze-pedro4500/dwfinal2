@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
-import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared/util/request-util';
-import { IDoenteDiagnosticoSocial } from 'app/shared/model/doente-diagnostico-social.model';
+import { DATE_FORMAT } from '../../shared/constants/input.constants';
+import { SERVER_API_URL } from '../../app.constants';
+import { createRequestOption } from '../../shared/util/request-util';
+import { IDoenteDiagnosticoSocial } from '../../shared/model/doente-diagnostico-social.model';
 
 type EntityResponseType = HttpResponse<IDoenteDiagnosticoSocial>;
 type EntityArrayResponseType = HttpResponse<IDoenteDiagnosticoSocial[]>;
