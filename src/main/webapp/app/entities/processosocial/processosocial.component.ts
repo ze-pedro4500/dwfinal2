@@ -26,7 +26,8 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
   eventSubscriber: Subscription;
   doenteId: number;
   perfilSocial: boolean;
-
+  new = true;
+  registoHoje: IDoenteDiagnosticoSocial;
   isSaving: boolean;
   doentes: IDoente[];
 
@@ -108,28 +109,52 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
       });
       this.loadAll();
       this.registerChangeInDoenteRegistosIntervencoes();
-      this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
-        const d = new Date();
-        const currDate = d.getDate();
-        const currMonth = d.getMonth();
-        const currYear = d.getFullYear();
-        const months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        const today = months[currMonth] + ' ' + currDate + ' ' + currYear;
-        for (let i = 0; i <= res.body.length; i++) {
-          if (res.body[i] === today) {
-            console.log('YES');
-          }
-          console.log(today);
-        }
-        /*  console.log(res.body);
-        this.updateForm(res.body);*/
-      });
+      this.checkifToday();
     });
     this.doenteService.query().subscribe(
       (res: HttpResponse<IDoente[]>) => (this.doentes = res.body),
       (res: HttpErrorResponse) => this.onError(res.message)
     );
+  }
+
+  checkifToday() {
+    this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
+      const dateObj = new Date();
+      const month = dateObj.getUTCMonth() + 1; //months from 1-12
+      const day = dateObj.getUTCDate();
+      const year = dateObj.getUTCFullYear();
+      let strSec = String(day);
+      let strMon = String(month);
+      if (day < 10) {
+        strSec = '0' + day;
+      }
+      if (month < 10) {
+        strMon = '0' + month;
+      }
+      const newdate = year + '-' + strMon + '-' + strSec;
+      for (let i = 0; i < res.body.length; i++) {
+        if (res.body[i].data != null && res.body[i].data.toString() === newdate) {
+          console.log('YES');
+          this.new = false;
+          this.editForm.setValue({
+            id: res.body[i].id,
+            data: res.body[i].data,
+            descr: res.body[i].descr,
+            doente: res.body[i].doente
+          });
+          this.registoHoje = res.body[i];
+        } else {
+          this.editForm.setValue({
+            id: res.body[i].id,
+            data: res.body[i].data,
+            descr: '',
+            doente: res.body[i].doente
+          });
+        }
+      }
+      /*  console.log(res.body);
+              this.updateForm(res.body);*/
+    });
   }
 
   ngOnDestroy() {
@@ -157,12 +182,7 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
   }
 
   updateForm(doenteDiagnosticoSocial: IDoenteDiagnosticoSocial) {
-    this.editForm.patchValue({
-      id: doenteDiagnosticoSocial.id,
-      data: doenteDiagnosticoSocial.data,
-      descr: doenteDiagnosticoSocial.descr,
-      doente: this.doente
-    });
+    this.doenteDiagnosticoSocialService.update;
   }
 
   previousState() {
@@ -171,11 +191,32 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
 
   save() {
     this.isSaving = true;
-    const doenteDiagnosticoSocial = this.createFromForm();
+    this.checkifToday();
+    if (this.new === true) {
+      const doenteDiagnosticoSocial = this.createFromForm();
 
-    this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
-      this.subscribeToSaveResponse(this.doenteDiagnosticoSocialService.create(doenteDiagnosticoSocial));
-    });
+      this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
+        this.subscribeToSaveResponse(this.doenteDiagnosticoSocialService.create(doenteDiagnosticoSocial));
+        this.delay(1000);
+        this.checkifToday();
+
+        this.new = false;
+      });
+    } else {
+      const doenteDiagnosticoSocial = this.updatefromForm(this.registoHoje);
+      this.subscribeToSaveResponse(this.doenteDiagnosticoSocialService.update(doenteDiagnosticoSocial));
+      this.checkifToday();
+    }
+  }
+
+  private updatefromForm(doenteDiagnosticoSocial: IDoenteDiagnosticoSocial) {
+    return {
+      ...new DoenteDiagnosticoSocial(),
+      id: doenteDiagnosticoSocial.id,
+      data: doenteDiagnosticoSocial.data,
+      descr: this.editForm.get(['descr']).value,
+      doente: this.doente
+    };
   }
 
   private createFromForm(): IDoenteDiagnosticoSocial {
@@ -184,7 +225,7 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
 
       data: moment(),
       descr: this.editForm.get(['descr']).value,
-      doente: this.editForm.get(['doente']).value
+      doente: this.doente
     };
   }
 

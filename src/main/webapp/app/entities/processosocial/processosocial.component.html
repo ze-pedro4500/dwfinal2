@@ -17,7 +17,10 @@
                     <textarea rows=10 formControlName="descr" class="item form-control"></textarea>
                 </div>
             <div>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="but btn btn-primary">
+                <button *ngIf="new" type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="but btn btn-primary">
+                    <span>Criar Registo</span>
+                </button>
+                <button type="submit" *ngIf="!new"  class="but btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
                 </button>
                 

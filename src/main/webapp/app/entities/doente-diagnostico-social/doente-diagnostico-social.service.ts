@@ -61,12 +61,7 @@ export class DoenteDiagnosticoSocialService {
   }
 
   protected convertDateFromClient(doenteDiagnosticoSocial: IDoenteDiagnosticoSocial): IDoenteDiagnosticoSocial {
-    const copy: IDoenteDiagnosticoSocial = Object.assign({}, doenteDiagnosticoSocial, {
-      data:
-        doenteDiagnosticoSocial.data && doenteDiagnosticoSocial.data.isValid()
-          ? doenteDiagnosticoSocial.data.format(DATE_FORMAT)
-          : undefined
-    });
+    const copy: IDoenteDiagnosticoSocial = Object.assign({}, doenteDiagnosticoSocial, {});
     return copy;
   }
 
