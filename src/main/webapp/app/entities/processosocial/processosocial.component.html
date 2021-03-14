@@ -9,21 +9,24 @@
                     
                     <div id="topo">
                         <label style="margin-bottom: 1vw;width: 100%;" class="lab form-control-label" for="field_descr">Diagnóstico Social</label>
-                        <select>
-                            <option>Hoje</option>
+                        <select (change)="verHistorico($event.target.value)">
+                            <option value='{{this.registoHoje.descr}}'>Hoje</option>
+                            <option value="{{histRegisto.descr}}" *ngFor=" let histRegisto of this.histRegistos2">{{histRegisto.data}}</option>
                         </select>
+
                     </div>
                     
                     <textarea rows=10 formControlName="descr" class="item form-control"></textarea>
                 </div>
             <div>
+                <div *ngIf="hoje">
                 <button *ngIf="new" type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="but btn btn-primary">
                     <span>Criar Registo</span>
                 </button>
                 <button type="submit" *ngIf="!new"  class="but btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
                 </button>
-                
+                </div>
             </div>
         </form>
 

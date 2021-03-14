@@ -30,10 +30,12 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
   registoHoje: IDoenteDiagnosticoSocial;
   isSaving: boolean;
   doentes: IDoente[];
-
+  histRegistos: IDoenteDiagnosticoSocial[];
+  histRegistos2: IDoenteDiagnosticoSocial[]=[];
   newRegisto = false;
   isSaving2: boolean;
   doente: IDoente;
+  hoje=true;
 
   editForm = this.fb.group({
     id: [],
@@ -117,8 +119,26 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
     );
   }
 
+
+
+verHistorico(d:string){
+  if(d===this.registoHoje.descr){
+    this.hoje =true
+  }else{
+    this.hoje=false;
+  }
+  console.log("VERHISTORICO");
+  console.log(d);
+  this.editForm.patchValue({
+
+    descr: d
+  });
+}
+
+
   checkifToday() {
     this.doenteDiagnosticoSocialService.searchhist(this.doenteId).subscribe(res => {
+      
       const dateObj = new Date();
       const month = dateObj.getUTCMonth() + 1; //months from 1-12
       const day = dateObj.getUTCDate();
@@ -132,6 +152,32 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
         strMon = '0' + month;
       }
       const newdate = year + '-' + strMon + '-' + strSec;
+      // RECEBER TODOS OS REGISTOS RELATIVOS A ESTE DOENTE DIAGNOSTICO SOCIAL 
+      this.histRegistos = res.body;
+      // REMOVER O REGISTO CORRESPONDENTE AO DIA DE HOJE (CASO HAJA)
+     for(let t = 0; t<this.histRegistos.length;t++){
+       if(this.histRegistos[t].data.toString()=== newdate){
+         console.log("hoje");
+       }else{
+         let exists = false
+         for(let b = 0; b<this.histRegistos2.length;b++){
+           if(this.histRegistos2[b].id===this.histRegistos[t].id){
+              exists = true;
+              console.log("exists");
+             break;
+           }
+         }
+         if(!exists){
+           this.histRegistos2.push(this.histRegistos[t]);
+         }
+       }
+     }
+     this.histRegistos2.reverse();
+
+
+     
+     console.log(this.histRegistos2);
+    
       for (let i = 0; i < res.body.length; i++) {
         if (res.body[i].data != null && res.body[i].data.toString() === newdate) {
           console.log('YES');
@@ -151,6 +197,7 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
             doente: res.body[i].doente
           });
         }
+
       }
       /*  console.log(res.body);
               this.updateForm(res.body);*/
@@ -259,3 +306,5 @@ export class ProcessosocialComponent implements OnInit, OnDestroy {
     return item.id;
   }
 }
+
+

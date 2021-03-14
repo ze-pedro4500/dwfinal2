@@ -125,6 +125,20 @@ export class ContactosComponent implements OnInit, OnDestroy {
   save2() {
     this.isSaving2 = true;
     const doenteContactosOutros = this.createFromForm2();
+    if (doenteContactosOutros.preferencial){
+      this.doenteContactosOutrosService.search(this.doenteId).subscribe((res:HttpResponse<IDoenteContactosOutros[]>) =>{
+      const outroscontactos = res.body;
+      outroscontactos.forEach(element => {
+        if(element.nome !== doenteContactosOutros.nome){
+          console.log(element.nome);
+          console.log(doenteContactosOutros.nome);
+        element.preferencial=false;
+        this.subscribeToSaveResponse(this.doenteContactosOutrosService.update(element));
+        this.loadAll();
+      }});
+      });
+      
+    }
     this.subscribeToSaveResponse2(this.doenteContactosOutrosService.create(doenteContactosOutros));
     this.data.changenewcontacto(false);
     this.loadAll();

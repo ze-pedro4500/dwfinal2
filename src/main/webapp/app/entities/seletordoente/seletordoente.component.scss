@@ -25,11 +25,12 @@ h4 {
 }
 
 .ctn {
-  max-width: 80vw;
+  width: fit-content;
+  margin: auto;
 }
 
 .rou {
-  margin-left: 9vw;
+ display: flex;
 }
 
 #doentes {
@@ -37,6 +38,9 @@ h4 {
 }
 
 .bp {
-  margin-top: 0.4vw;
-  margin-left: -3vw;
+  height: 100%;
+  margin-right: -3vw;
+}
+.labelinput{
+  display: block;
 }
